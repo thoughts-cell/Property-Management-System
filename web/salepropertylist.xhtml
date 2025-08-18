@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">Sale Property List</ui:define>
+        <ui:define name="heading">List of Sale Properties</ui:define>
+
+        <ui:define name="content">
+            <h:form>
+                <h:dataTable value="#{salePropertyListBean.saleProperties}" var="property" >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{property.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Type"/>
+                    </f:facet>
+                    <h:outputText value="#{property.propertyType}" style="padding-right: 20px;"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Location"/>
+                    </f:facet>
+                    <h:outputText value="#{property.address.streetNumber} #{property.address.streetName} #{property.address.city}" style="padding-right: 20px;"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Action"/>
+                    </f:facet>
+                    <h:form><h:commandLink value="View Details" action="#{salePropertyListBean.viewPropertyDetails(property.id)}"/></h:form>                
+                </h:column>
+                </h:dataTable>
+                <h:panelGroup rendered="#{salePropertyListBean.saleProperties == null or salePropertyListBean.saleProperties.size() == 0}">
+                    <h:outputText value="There are no properties listed." style="color:red;" />
+                </h:panelGroup>
+            </h:form>
+            <h:panelGroup style="text-align:center; padding-top: 10px;">
+                <h:outputText value="Total Sale Properties: #{salePropertyListBean.salePropertyCount}" style="font-weight:bold;" />
+            </h:panelGroup>
+        </ui:define>
+
+        <ui:define name="footer">
+            <a href="createsaleproperty.xhtml">Create a new sale property</a> |
+            <a href="home.xhtml">Back to Home</a>
+        </ui:define>
+    </ui:composition>
+</html>

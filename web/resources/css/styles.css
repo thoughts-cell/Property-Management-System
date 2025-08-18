@@ -1,0 +1,14 @@
+/* 
+    Created on : 19/09/2025
+    Author     : Akshay Benny 12237643
+*/
+.error_message{
+    color: red;
+    font-family: Tahoma,Arial;
+    font-size: 0.7em;
+}
+
+.headerStyle {
+    background-color: lightgrey;
+    padding: 5px;
+}

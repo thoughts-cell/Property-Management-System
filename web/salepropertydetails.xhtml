@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Property Details</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f5f5f5;
+            }
+
+            .property-details-grid {
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            h:outputText {
+                margin-bottom: 10px;
+            }
+
+            h:outputLabel {
+                font-weight: bold;
+            }
+
+            .error-message {
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <ui:composition template="layout.xhtml">
+            <ui:define name="title">The Sale Property of ID: <h:outputText value="#{propertyDetailsBean.property.id}" /></ui:define>
+            <ui:define name="heading">The Sale Property of ID: <h:outputText value="#{propertyDetailsBean.property.id}" /></ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="2" styleClass="property-details-grid">
+                        <h:outputLabel value="Property Type:" />
+                        <h:outputText value="#{propertyDetailsBean.property.propertyType}" />
+
+                        <h:outputLabel value="Number of Bedrooms:" />
+                        <h:outputText value="#{propertyDetailsBean.property.noOfBedrooms}" />
+
+                        <h:outputLabel value="Number of Bathrooms:" />
+                        <h:outputText value="#{propertyDetailsBean.property.noOfBathrooms}" />
+
+                        <h:outputLabel value="Address:" />
+                        <h:outputText value="#{propertyDetailsBean.property.address.streetNumber} #{propertyDetailsBean.property.address.streetName} #{propertyDetailsBean.property.address.city} #{propertyDetailsBean.property.address.country}" />
+
+                        <h:outputLabel value="Sale Price:" />
+                        <h:outputText value="#{propertyDetailsBean.property.salePrice}" />
+
+                        <h:outputLabel value="Property Description:" />
+                        <h:outputText value="#{propertyDetailsBean.property.propertyDescription}" />
+                    </h:panelGrid>
+
+                    <h:panelGroup rendered="#{empty propertyDetailsBean.property}">
+                        <h:outputText value="Property not found." style="color:red;" />
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+            <ui:define name="footer">
+                <a href="createsaleproperty.xhtml">Create a new sale property</a> |
+                <a href="home.xhtml">Back to Main Page</a>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

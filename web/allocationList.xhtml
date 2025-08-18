@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">The Current Allocations</ui:define>
+        <ui:define name="heading">The Current Allocations</ui:define>
+        <ui:define name="content">
+            <h:dataTable value="#{allocationController.allocationList}" var="allocation">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{allocation.id}"/>
+                </h:column>
+                <h:column>
+
+                    <f:facet name="header">
+                        <h:outputText value="Property Manager"/>
+                    </f:facet>
+                    <h:form><h:commandLink value="#{allocation.propertyManager.firstName} #{allocation.propertyManager.lastName}" action="#{allocationController.redirectToPropertyManager(allocation.propertyManager.id)}"/></h:form> 
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Property"/>
+                    </f:facet>
+                    <h:form><h:commandLink value="#{allocation.property.address.streetNumber} #{allocation.property.address.streetName}" action="#{allocationController.redirectToProperty(allocation.property.id)}"/></h:form>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Time Created"/>
+                    </f:facet>
+                    <h:outputText value="#{allocation.creationTime}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:form><h:commandLink value="Delete" action="#{allocationController.doDeleteAllocation(allocation)}"/></h:form>           
+                </h:column>
+            </h:dataTable>
+
+            <h:outputFormat value="Total Allocations: {0}">
+                <f:param value="#{allocationController.total}"/>
+            </h:outputFormat>
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="newAllocation.xhtml">Create a new Allocation</h:outputLink> | 
+            <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+        </ui:define>
+
+    </ui:composition>
+</html>
