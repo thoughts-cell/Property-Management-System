@@ -13,7 +13,7 @@ import realestatemanagement.model.RentProperty;
 
 /**
  *
- * @author harsh
+ * 
  */
 @Named
 @ViewScoped
