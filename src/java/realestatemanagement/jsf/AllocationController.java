@@ -22,7 +22,7 @@ import realestatemanagement.model.SaleProperty;
 import static realestatemanagement.jsf.PropertyManagerController.getString;
 
 /**
- * @author 12233613
+ * @author 12233612 Zhengxu 
  */
 @Named("allocationController")
 @ViewScoped
@@ -36,30 +36,40 @@ public class AllocationController implements  java.io.Serializable {
     @EJB
     private PropertyEJB propertyEJB;
     private Allocation allocation = new Allocation();
-    private String propertyManagerId;
-    private String rentPropertyId;
-    private String salePropertyId;
+    
     private List<Allocation> allocationList = new ArrayList<Allocation>();
     private List<PropertyManager> managerList = new ArrayList<PropertyManager>();
     private List<RentProperty> rentProperties = new ArrayList<RentProperty>();
     private List<SaleProperty> saleProperties = new ArrayList<SaleProperty>();
-
+    private Long propertyManagerId;
+    private Long rentPropertyId;
+    private Long salePropertyId;
+    private int totalCount;
     @PostConstruct
     public void init() {
-        setManagerList((List<PropertyManager>) propertyManagerEJB.findManagers());
+        /*setManagerList((List<PropertyManager>) propertyManagerEJB.findManagers());
         setAllocationList(allocationEJB.findAllocations());
         setTotal(String.valueOf(getAllocationList().size()));
         setRentProperties(propertyEJB.findAllRentProperties());
-        setSaleProperties(propertyEJB.findAllSaleProperties());
+        setSaleProperties(propertyEJB.findAllSaleProperties());*/
+        
+        refreshList();
     }
-
+    private void refreshLists() {
+        managerList = propertyManagerEJB.findManagers();
+        allocationList = allocationEJB.findAllocations();
+        rentProperties = propertyEJB.findAllRentProperties();
+        saleProperties = propertyEJB.findAllSaleProperties();
+        totalCount = allocationList.size();
+    }
     public String doCreateAllocation(Allocation allocation) {
 
         FacesContext context = FacesContext.getCurrentInstance();
         allocationEJB.createAllocation(this.getAllocation());
-        setAllocationList(allocationEJB.findAllocations());
+        //setAllocationList(allocationEJB.findAllocations());
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Allocation has been created", "Allocation has been created successfully"));
-        setTotal(String.valueOf(getAllocationCount()));
+        refreshList();
+        this.allocation = new Allocation();
         return "allocationList.xhtml";
     }
 
@@ -73,7 +83,7 @@ public class AllocationController implements  java.io.Serializable {
         else {
             allocationList = new ArrayList<Allocation>();
             allocationList.add(foundAllocation);
-            total = "2";
+            totalCount = allocationList.size();
             return "foundAllocation.xhtml";
         }
     }
@@ -83,6 +93,7 @@ public class AllocationController implements  java.io.Serializable {
         try {
             allocationEJB.deleteAllocation(allocation);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Allocation has been deleted", "Allocation has been deleted successfully"));
+            refreshLists();
         } catch (Exception e) {
             context.addMessage("error", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Allocation hasn't been deleted", e.getMessage()));
         }
@@ -169,22 +180,35 @@ public class AllocationController implements  java.io.Serializable {
         this.saleProperties = saleProperties;
     }
 
-    public String doNewRentPropertyAllocation() {
+
+    private String saveNewAllocation(Property property) {
         allocation = new Allocation();
+        allocation.setPropertyManager(propertyManagerEJB.findPropertyManagerById(propertyManagerId));
+        allocation.setProperty(property);
+        allocation.setCreationTime(new Date());
+        
+        allocationEJB.createAllocation(allocation);
+        refreshLists();
+        return "allocationList.xhtml?faces-redirect=true";
+    }
+    public String doNewRentPropertyAllocation() {
+         /* allocation = new Allocation();
         allocation.setPropertyManager(propertyManagerEJB.findPropertyManagerById(Long.valueOf(propertyManagerId)));
         allocation.setProperty(propertyEJB.findRentPropertyById(Long.valueOf(rentPropertyId)));
         allocation.setCreationTime(new Date());
         allocationEJB.createAllocation(allocation);
-        return "allocationList.xhtml";
+        return "allocationList.xhtml"; */
+        return saveNewAllocation(propertyEJB.findRentPropertyById(rentPropertyId));
     }
 
     public String doNewSalePropertyAllocation() {
-        allocation = new Allocation();
+      /*  allocation = new Allocation();
         allocation.setPropertyManager(propertyManagerEJB.findPropertyManagerById(Long.valueOf(propertyManagerId)));
         allocation.setProperty(propertyEJB.findSalePropertyById(Long.valueOf(salePropertyId)));
         allocation.setCreationTime(new Date());
         allocationEJB.createAllocation(allocation);
-        return "allocationList.xhtml";
+        return "allocationList.xhtml";   */
+        return saveNewAllocation(propertyEJB.findSalePropertyById(salePropertyId));
     }
 
     /**
