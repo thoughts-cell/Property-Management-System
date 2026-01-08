@@ -4,11 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-/**
- *
- * @author akshay benny
- * 
- */
+ 
 @Entity
 
 @NamedQuery(name = "findAllAllocations", query = "SELECT a FROM Allocation a")

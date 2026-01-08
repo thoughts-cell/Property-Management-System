@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en">
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">Search an Allocation</ui:define>
+        <ui:define name="header">Search an Allocation</ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:panelGrid columns = "2">
+                    <tr>
+                        <td  >Allocation ID:</td>
+
+                        <td><h:inputText value ="#{allocationController.allocation.id}" required ="true"
+                                        requiredMessage="Please enter the Allocation ID">
+                            </h:inputText>
+                        </td>
+                    </tr>
+                </h:panelGrid>
+                <h:commandButton value="Search" action="#{allocationController.doSearchAllocation}"/>
+            </h:form>
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="allocationList.xhtml">The list of allocations</h:outputLink> |
+            <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+        </ui:define>
+
+    </ui:composition>
+</html>

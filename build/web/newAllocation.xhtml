@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">Create a new Allocation</ui:define>
+        <ui:define name="heading">Create a new allocation</ui:define>
+        <ui:define name="content">
+            <h:form id="allocationForm" >
+                <h:panelGrid columns = "3">              
+                    <h:outputLabel value="Property Manager:"/>
+                    <h:selectOneMenu value = "#{allocationController.propertyManagerId}" required ="true">
+                        <f:selectItems value="#{allocationController.managerList}" var="manager" itemValue="#{manager.id}" itemLabel="#{manager.firstName} #{manager.lastName}   "/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value=""/>
+
+                    <h:outputLabel value="Sale Property:"/>
+                    <h:selectOneMenu value = "#{allocationController.salePropertyId}" required ="true">
+                        <f:selectItems value="#{allocationController.saleProperties}" var="property" itemValue="#{property.id}" itemLabel="#{property.address.streetNumber} #{property.address.streetName} #{property.address.city}  "/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Allocate" action="#{allocationController.doNewSalePropertyAllocation}" update=":allocationTable"/>
+
+                    <h:outputLabel value="Rent Property:"/>
+                    <h:selectOneMenu value = "#{allocationController.rentPropertyId}" required ="true">
+                        <f:selectItems value="#{allocationController.rentProperties}" var="property" itemValue="#{property.id}" itemLabel="#{property.address.streetNumber} #{property.address.streetName} #{property.address.city}  "/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Allocate" action="#{allocationController.doNewRentPropertyAllocation}" update=":allocationTable"/>
+                </h:panelGrid>
+
+            </h:form>
+            <hr/>
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="allocationList.xhtml">The list of Allocations</h:outputLink> |
+            <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+        </ui:define>
+
+    </ui:composition>
+</html>

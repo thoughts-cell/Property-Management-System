@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="layout.xhtml">
+    
+<ui:define name="title">Create a Property Manager</ui:define>
+<ui:define name="heading">Create a Property Manager</ui:define>
+<ui:define name="content">
+<hr/>
+        <h:form id="managerForm" >
+            <h:panelGrid columns = "2">
+                <tr>
+                    <td  >First Name:</td>
+                    <td><h:inputText value ="#{managerController.manager.firstName}" required ="true">
+                        <f:validateLength minimum="2" maximum="16"/>
+                    </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name :</td>
+                    <td><h:inputText value ="#{managerController.manager.lastName}" required ="true">
+                    <f:validateLength minimum="2" maximum="16"/>
+                    </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone :</td>
+                    <td><h:inputText value ="#{managerController.manager.phone}" required ="true">
+                    <f:validateLength minimum="8" maximum="13"/>
+                    </h:inputText>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Mobile :</td>
+                    <td><h:inputText value ="#{managerController.manager.mobile}" required ="true">
+                    <f:validateLength minimum="10" maximum="13"/>
+                    </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email address :</td>
+                    <td><h:inputText value ="#{managerController.manager.email}" validator = "emailValidator" validatorMessage="Please insert a valid Email Address !">
+                        <f:validateRegex pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+                    </h:inputText>
+                    <h:message for="email" style="color:red;" />
+                    </td>
+                </tr>
+            </h:panelGrid>
+            <h:commandButton value="CREATE" action="#{managerController.doCreateManager()}"/>
+
+        </h:form>
+<hr/>
+</ui:define>
+<ui:define name="footer">
+    <h:outputLink value="listManager.xhtml">The list of property managers</h:outputLink> |
+    <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+</ui:define>
+
+</ui:composition>
+</html>

@@ -2,8 +2,7 @@ package realestatemanagement.jsf;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.application.FacesMessage;
+ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
@@ -20,6 +19,7 @@ import realestatemanagement.model.RentProperty;
 import realestatemanagement.model.SaleProperty;
 
 import static realestatemanagement.jsf.PropertyManagerController.getString;
+import realestatemanagement.model.Property;
 
 /**
  * @author 12233612 Zhengxu 
@@ -37,10 +37,10 @@ public class AllocationController implements  java.io.Serializable {
     private PropertyEJB propertyEJB;
     private Allocation allocation = new Allocation();
     
-    private List<Allocation> allocationList = new ArrayList<Allocation>();
-    private List<PropertyManager> managerList = new ArrayList<PropertyManager>();
-    private List<RentProperty> rentProperties = new ArrayList<RentProperty>();
-    private List<SaleProperty> saleProperties = new ArrayList<SaleProperty>();
+    private List<Allocation> allocationList = new ArrayList<>();
+    private List<PropertyManager> managerList = new ArrayList<>();
+    private List<RentProperty> rentProperties = new ArrayList<>();
+    private List<SaleProperty> saleProperties = new ArrayList<>();
     private Long propertyManagerId;
     private Long rentPropertyId;
     private Long salePropertyId;
@@ -53,7 +53,7 @@ public class AllocationController implements  java.io.Serializable {
         setRentProperties(propertyEJB.findAllRentProperties());
         setSaleProperties(propertyEJB.findAllSaleProperties());*/
         
-        refreshList();
+        refreshLists();
     }
     private void refreshLists() {
         managerList = propertyManagerEJB.findManagers();
@@ -68,7 +68,7 @@ public class AllocationController implements  java.io.Serializable {
         allocationEJB.createAllocation(this.getAllocation());
         //setAllocationList(allocationEJB.findAllocations());
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Allocation has been created", "Allocation has been created successfully"));
-        refreshList();
+        refreshLists();
         this.allocation = new Allocation();
         return "allocationList.xhtml";
     }
@@ -81,7 +81,7 @@ public class AllocationController implements  java.io.Serializable {
             return null;
         }
         else {
-            allocationList = new ArrayList<Allocation>();
+            allocationList = new ArrayList<>();
             allocationList.add(foundAllocation);
             totalCount = allocationList.size();
             return "foundAllocation.xhtml";
@@ -214,42 +214,42 @@ public class AllocationController implements  java.io.Serializable {
     /**
      * @return the propertyManagerId
      */
-    public String getPropertyManagerId() {
+    public Long getPropertyManagerId() {
         return propertyManagerId;
     }
 
     /**
      * @param propertyManagerId the propertyManagerId to set
      */
-    public void setPropertyManagerId(String propertyManagerId) {
+    public void setPropertyManagerId(Long propertyManagerId) {
         this.propertyManagerId = propertyManagerId;
     }
 
     /**
      * @return the rentPropertyId
      */
-    public String getRentPropertyId() {
+    public Long getRentPropertyId() {
         return rentPropertyId;
     }
 
     /**
      * @param rentPropertyId the rentPropertyId to set
      */
-    public void setRentPropertyId(String rentPropertyId) {
+    public void setRentPropertyId(Long rentPropertyId) {
         this.rentPropertyId = rentPropertyId;
     }
 
     /**
      * @return the salePropertyId
      */
-    public String getSalePropertyId() {
+    public Long getSalePropertyId() {
         return salePropertyId;
     }
 
     /**
      * @param salePropertyId the salePropertyId to set
      */
-    public void setSalePropertyId(String salePropertyId) {
+    public void setSalePropertyId(Long salePropertyId) {
         this.salePropertyId = salePropertyId;
     }
 

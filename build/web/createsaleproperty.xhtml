@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="layout.xhtml">
+    
+<ui:define name="title">Create Sale Property</ui:define>
+<ui:define name="heading">Provide property details to Create New Sale Property</ui:define>
+<ui:define name="content">
+    
+        <h:form>
+            <h:panelGrid columns="3">
+                
+                <h:outputLabel value="Property Type:"/>
+                <h:inputText value="#{createSalePropertyBean.propertyType}" required="true" requiredMessage="Please enter property type!" id="propertyType" />
+                <h:message errorStyle="color:red" for="propertyType" />
+                
+                <h:outputLabel value="Number of Bedrooms:"/>
+                <h:inputText value="#{createSalePropertyBean.noOfBedrooms}" required="true" requiredMessage="Please enter number of bedrooms!" id="bedrooms" />
+                <h:message errorStyle="color:red" for="bedrooms" />
+                
+                <h:outputLabel value="Number of Bathrooms:"/>
+                <h:inputText value="#{createSalePropertyBean.noOfBathrooms}" required="true" requiredMessage="Please enter number of bathrooms!" id="bathrooms" />
+                <h:message errorStyle="color:red" for="bathrooms" />
+                
+                <h:outputLabel value="Property Description:"/>
+                <h:inputTextarea value="#{createSalePropertyBean.propertyDescription}" required="true" requiredMessage="Please enter a description!" id="description" />
+                <h:message errorStyle="color:red" for="description" />
+                
+                <h:outputLabel value="Street Number:"/>
+                <h:inputText value="#{createSalePropertyBean.streetNumber}" required="true" requiredMessage="Please enter street number!" id="streetNumber" />
+                <h:message errorStyle="color:red" for="street" />
+                
+                <h:outputLabel value="Street Name:"/>
+                <h:inputText value="#{createSalePropertyBean.streetName}" required="true" requiredMessage="Please enter street name!" id="streetName" />
+                <h:message errorStyle="color:red" for="street" />
+                
+                <h:outputLabel value="City:"/>
+                <h:inputText value="#{createSalePropertyBean.city}" required="true" requiredMessage="Please enter city!" id="city" />
+                <h:message errorStyle="color:red" for="city" />
+                
+                <h:outputLabel value="Postcode:"/>
+                <h:inputText value="#{createSalePropertyBean.postCode}" required="true" requiredMessage="Please enter zip code!" id="postCode" />
+                <h:message errorStyle="color:red" for="zipCode" />
+                
+                <h:outputLabel value="Country:"/>
+                <h:inputText value="#{createSalePropertyBean.country}" required="true" requiredMessage="Please enter zip code!" id="country" />
+                <h:message errorStyle="color:red" for="country" />
+                
+                <h:outputLabel value="Sale Price:"/>
+                <h:inputText value="#{createSalePropertyBean.salePrice}" required="true" requiredMessage="Please enter the Sale Price!" id="salePrice" />
+                <h:message errorStyle="color:red" for="salePrice" />
+                
+                <h:commandButton value="Create" action="#{createSalePropertyBean.createProperty}" />
+            </h:panelGrid>
+        </h:form>
+</ui:define>
+<ui:define name="footer">
+    <a href="salepropertylist.xhtml">The list of sale properties</a> |
+    <a href="home.xhtml">Back to Home</a>
+</ui:define>
+</ui:composition>
+</html>

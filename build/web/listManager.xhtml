@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">The Current Property Managers</ui:define>
+        <ui:define name="heading">The Current Property Managers</ui:define>
+        <ui:define name="content">
+            <h:dataTable value="#{managerController.managerList}" var="propertyManager">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{propertyManager.id}"/>
+                </h:column>
+                <h:column>
+
+                    <f:facet name="header">
+                        <h:outputText value="First Name"/>
+                    </f:facet>
+                    <h:outputText value="#{propertyManager.firstName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name"/>
+                    </f:facet>
+                    <h:outputText value="#{propertyManager.lastName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:form><h:commandLink value="View Detail" action="#{managerController.view(propertyManager)}"/></h:form>           
+                </h:column>
+            </h:dataTable>
+
+            <h:outputFormat value="Total number of property managers: {0}">
+                <f:param value="#{managerController.total}"/>
+            </h:outputFormat>
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="newPropertymanager.xhtml">Create a property manager</h:outputLink> | 
+            <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+        </ui:define>
+
+    </ui:composition>
+</html>

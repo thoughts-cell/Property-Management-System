@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">The Current Rent Properties</ui:define>
+        <ui:define name="heading">The Current Rent Properties</ui:define>
+        <ui:define name="content">
+            <h:dataTable value="#{rentPropertyListBean.rentProperties}" var="property">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{property.id}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Type"/>
+                    </f:facet>
+                    <h:outputText value="#{property.propertyType}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Location"/>
+                    </f:facet>
+                    <h:outputText value="#{property.address.streetNumber} #{property.address.streetName} #{property.address.city}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Action</f:facet>
+                    <h:form><h:commandLink value="View Details" action="#{rentPropertyListBean.viewPropertyDetails(property.id)}"/></h:form>                
+                </h:column>
+            </h:dataTable>
+            <br></br>
+            <h:panelGroup rendered="#{empty rentPropertyListBean.rentProperties}">
+                <h:outputText value="There are no properties listed." style="color:red;" />
+            </h:panelGroup><br></br>
+            <h:panelGroup style="text-align:center; padding-top: 10px;">
+                <h:outputText value="Total Rent Properties: #{rentPropertyListBean.rentPropertyCount}" style="font-weight:bold;" />
+            </h:panelGroup>
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="createrentproperty.xhtml">Create a rent property</h:outputLink> | 
+            <h:outputLink value="home.xhtml">Back to Home</h:outputLink>
+        </ui:define>
+    </ui:composition>
+</html>

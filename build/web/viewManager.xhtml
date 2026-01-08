@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">The property manager of ID #{managerController.manager.id}</ui:define>
+        <ui:define name="heading">The property manager of ID #{managerController.manager.id}</ui:define>
+        <ui:define name="content">
+
+            <h:panelGrid columns="2">
+                <h:outputText value="Manager Name:"/>
+                <h:outputText
+                    value="#{managerController.manager.firstName} #{managerController.manager.lastName}"/>
+                <h:outputText value="Phone Number:"/>
+                <h:outputText value="#{managerController.manager.phone}"/>
+                <h:outputText value="Mobile:"/>
+                <h:outputText value="#{managerController.manager.mobile}"/>
+                <h:outputText value="Email Address:"/>
+                <h:outputText value="#{managerController.manager.email}"/>
+            </h:panelGrid>
+            <h1>Property Allocations (#{managerController.numberOfAllocations})</h1>
+
+            <h:panelGroup rendered="#{managerController.numberOfAllocations == 0}">
+                <h:outputText value="This manager has not been allocated with any properties yet."/>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{managerController.numberOfAllocations != 0}">
+                <h:dataTable value="#{managerController.manager.allocations}" var="allocation">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#"/>
+                        </f:facet>
+                        <h:outputText value="#{allocation.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Time Created"/>
+                        </f:facet>
+                        <h:outputText value="#{allocation.creationTime}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Location"/>
+                        </f:facet>
+                        <h:form><h:commandLink value="#{allocation.property.address.streetNumber} #{allocation.property.address.streetName}" action="#{managerController.redirectToProperty(allocation.property.id)}"/></h:form>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+
+
+        </ui:define>
+        <ui:define name="footer">
+            <h:outputLink value="newAllocation.xhtml">Create a new allocation</h:outputLink> |
+            <h:outputLink value="home.xhtml">Main Page</h:outputLink>
+        </ui:define>
+
+    </ui:composition>
+</html>

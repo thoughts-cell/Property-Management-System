@@ -7,11 +7,7 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 
 
-/**
- *
- * @author akshay benny
- * 
- */
+ 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({

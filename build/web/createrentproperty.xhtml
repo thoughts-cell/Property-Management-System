@@ -1,0 +1,67 @@
+<!-- createRentProperty.xhtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="layout.xhtml">
+    <ui:define name="title">Create Rent Property</ui:define>
+    <ui:define name="heading">Provide property details to Create Rent Property</ui:define>
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="3">
+                
+                <h:outputLabel value="Property Type:"/>
+                <h:inputText value="#{createRentPropertyBean.propertyType}" required="true" requiredMessage="Please enter property type!" id="propertyType" />
+                <h:message errorStyle="color:red" for="propertyType" />
+                
+                <h:outputLabel value="Number of Bedrooms:"/>
+                <h:inputText value="#{createRentPropertyBean.noOfBedrooms}" required="true" requiredMessage="Please enter number of bedrooms!" id="bedrooms" />
+                <h:message errorStyle="color:red" for="bedrooms" />
+                
+                <h:outputLabel value="Number of Bathrooms:"/>
+                <h:inputText value="#{createRentPropertyBean.noOfBathrooms}" required="true" requiredMessage="Please enter number of bathrooms!" id="bathrooms" />
+                <h:message errorStyle="color:red" for="bathrooms" />
+                
+                <h:outputLabel value="Description:"/>
+                <h:inputTextarea value="#{createRentPropertyBean.propertyDescription}" required="true" requiredMessage="Please enter a description!" id="description" />
+                <h:message errorStyle="color:red" for="description" />
+                
+                <h:outputLabel value="Street Number:"/>
+                <h:inputText value="#{createRentPropertyBean.streetNumber}" required="true" requiredMessage="Please enter street number!" id="streetNumber" />
+                <h:message errorStyle="color:red" for="street" />
+                
+                <h:outputLabel value="Street Name:"/>
+                <h:inputText value="#{createRentPropertyBean.streetName}" required="true" requiredMessage="Please enter street name!" id="streetName" />
+                <h:message errorStyle="color:red" for="street" />
+                
+                <h:outputLabel value="City:"/>
+                <h:inputText value="#{createRentPropertyBean.city}" required="true" requiredMessage="Please enter city!" id="city" />
+                <h:message errorStyle="color:red" for="city" />
+                
+                <h:outputLabel value="Postcode:"/>
+                <h:inputText value="#{createRentPropertyBean.postCode}" required="true" requiredMessage="Please enter zip code!" id="postCode" />
+                <h:message errorStyle="color:red" for="zipCode" />
+                
+                <h:outputLabel value="Country:"/>
+                <h:inputText value="#{createRentPropertyBean.country}" required="true" requiredMessage="Please enter zip code!" id="country" />
+                <h:message errorStyle="color:red" for="country" />
+
+                <h:outputLabel value="Weekly Rent: " />
+                <h:inputText value="#{createRentPropertyBean.weeklyRent}" required="true" requiredMessage="Please enter weekly rent!" id="weeklyRent" >
+                    <f:convertNumber />
+                </h:inputText>
+                <h:message errorStyle="color:red" for="weeklyRent" />
+                <h:outputLabel value="Furnished: " />
+                <h:selectBooleanCheckbox value="#{createRentPropertyBean.isFurnished}" />
+                <h:message errorStyle="color:red" for="isFurnished" />
+                <br></br>
+                <h:commandButton value="Create" action="#{createRentPropertyBean.createProperty}" />
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+    <ui:define name="footer">
+    <a href="rentpropertylist.xhtml">The list of rent properties</a> |
+    <a href="home.xhtml">Back to Home</a>
+</ui:define>
+</ui:composition>
+</html>

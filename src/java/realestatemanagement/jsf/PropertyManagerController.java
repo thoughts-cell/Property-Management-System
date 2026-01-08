@@ -18,7 +18,7 @@ import realestatemanagement.model.*;
 
 /**
  *
- * @author 12233612
+ * @author 12233612 Zhengxu
  */
 @Named("managerController")
 @RequestScoped
@@ -34,13 +34,15 @@ public class PropertyManagerController {
     private AllocationEJB allocationEJB;
 
     private PropertyManager manager = new PropertyManager();
-
+    private String searchFirstName;
+    private String searchLastName;
+    private String generalSearchTerm;
     private String total;
 
-    private List<PropertyManager> managerList = new ArrayList<PropertyManager>();
+    private List<PropertyManager> managerList = new ArrayList<>();
 
     private String numberOfAllocations = String.valueOf(0);
-
+ 
     @PostConstruct
     public void init() {
         managerList = propertyManagerEJB.findManagers();
@@ -105,6 +107,8 @@ public class PropertyManagerController {
             FacesContext.getCurrentInstance().addMessage("searchForm:", new FacesMessage("Manager not Found"));
             return null;
         }
+
+      
         return "foundManager.xhtml";
 
     }
@@ -113,15 +117,7 @@ public class PropertyManagerController {
         return "home.xhtml";
     }
 
-    public int allocatedPropertyCount() {
-        return propertyManagerEJB.totalProperties(getManager());
-
-    }
-
-    public int getManagerCount() {
-        return propertyManagerEJB.totalManagers();
-    }
-
+ 
     public String doCreateAllocation() {
         return "createAllocation.xhtml";
     }

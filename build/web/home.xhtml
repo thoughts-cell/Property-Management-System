@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="layout.xhtml">
+
+        <ui:define name="title">Real Estate Management</ui:define>
+        <ui:define name="heading">Real Estate Property E-Business System</ui:define>
+        <ui:define name="content">
+            <h2>Property Management</h2><br></br>
+            <h:outputLink value="createsaleproperty.xhtml">Create a Sale Property</h:outputLink> | 
+            <h:outputLink value="salepropertylist.xhtml">List all sale properties</h:outputLink> | 
+            <h:outputLink value="searchsaleproperty.xhtml">Search a sale property</h:outputLink>
+            <br></br>
+            <br></br>
+            <h:outputLink value="createrentproperty.xhtml">Create a Rent Property</h:outputLink> | 
+            <h:outputLink value="rentpropertylist.xhtml">List all rent properties</h:outputLink> | 
+            <h:outputLink value="searchrentproperty.xhtml">Search a Rent property</h:outputLink>
+            <br></br>
+            <h2>Property Manager</h2><br></br>
+            <h:outputLink value="newPropertymanager.xhtml">Create a Property Manager</h:outputLink> | 
+            <h:outputLink value="listManager.xhtml">List all property managers</h:outputLink> | 
+            <h:outputLink value="searchManager.xhtml">Search a Property Manager</h:outputLink>
+            <br></br>
+            <h2>Allocation Management</h2>
+            <br></br>
+            <h:outputLink value="newAllocation.xhtml">Create an allocation</h:outputLink> | 
+            <h:outputLink value="allocationList.xhtml">List all allocations</h:outputLink> | 
+            <h:outputLink value="searchAllocation.xhtml">Search an allocation</h:outputLink>
+            <br></br>
+        </ui:define>
+
+        <ui:define name="footer">
+            <a href="logout.xhtml">Logout</a>
+        </ui:define>
+
+    </ui:composition> 
+</html>
