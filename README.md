@@ -2,7 +2,7 @@
 
 A comprehensive 3-tier enterprise application for managing real estate properties, built with modern Jakarta EE technologies.
 
-## 🏗️ Architecture
+##  Architecture
 
 This system follows a classic 3-tier architecture pattern:
 
@@ -41,7 +41,7 @@ This system follows a classic 3-tier architecture pattern:
 - **Search Capabilities**: Find managers by name, email, or properties
 - **Performance Tracking**: Monitor manager workload and assignments
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Core Language**: Java 17+
 - **Enterprise Framework**: Jakarta EE 10
@@ -53,7 +53,7 @@ This system follows a classic 3-tier architecture pattern:
 - **Application Server**: GlassFish/Payara
 - **ORM Provider**: EclipseLink
 
-## 📊 Database Schema
+##  Database Schema
 
 ### Core Entities
 - **Property**: Base entity with inheritance (RentProperty, SaleProperty)
@@ -68,7 +68,7 @@ This system follows a classic 3-tier architecture pattern:
 - One-to-One: Property ↔ Address
 - Inheritance: Property → RentProperty, SaleProperty
 
-## 🚦 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Java 17 or higher
@@ -105,7 +105,7 @@ This system follows a classic 3-tier architecture pattern:
    - Open browser to: `http://localhost:8080/Property-Management-System/`
    - Default login: Register a new account or contact administrator
 
-## 🔧 Configuration
+##  Configuration
 
 ### Database Configuration
 Update `src/conf/persistence.xml`:
@@ -118,7 +118,7 @@ Update `src/conf/persistence.xml`:
 - Set up mail session for email functionality
 - Configure security realms if needed
 
-## 📱 Application Features
+##  Application Features
 
 ### User Interface
 - **Dashboard**: Overview of properties and managers
@@ -133,28 +133,14 @@ Update `src/conf/persistence.xml`:
 - Property type filtering (House, Apartment, Townhouse, etc.)
 
 ### Security Features
-- SHA-256 password hashing with salt
+
 - Session-based authentication
 - Role-based access control
 - Email verification for registration
 - Secure password recovery
 
-## 🧪 Testing
 
-The application includes comprehensive validation and error handling:
-- Input validation on all forms
-- Database constraint enforcement
-- Transaction rollback on errors
-- User-friendly error messages
-
-## 📈 Performance
-
-- **Connection Pooling**: Efficient database connection management
-- **Lazy Loading**: Optimized entity relationship loading
-- **Caching**: JPA second-level cache support
-- **Transaction Management**: Optimized transaction boundaries
-
-## 🔍 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -174,25 +160,6 @@ src/
     └── *.xhtml                # JSF Views
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📞 Support
-
-For questions or support:
-- Create an issue in the repository
-- Contact the development team
-- Check the documentation for common issues
-
----
-
-**Built with ❤️ using Jakarta EE technologies**
+**Built with  Jakarta EE technologies**
