@@ -16,6 +16,7 @@ import jakarta.persistence.NamedQuery;
 public class SaleProperty extends Property {
 
 
+    @Column(name = "SALE_PRICE")
     private Long salePrice;
 
     /**

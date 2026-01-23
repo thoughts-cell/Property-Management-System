@@ -10,7 +10,7 @@ import realestatemanagement.model.Allocation;
 
 /**
  *
- * @author 122333612
+ * @author 12233612
  */
 @Stateless
 @LocalBean

@@ -38,9 +38,9 @@ public class PropertyManager {
     
     private String email;
 
-    public PropertyManager(String firstName, String LastName, String phone, String mobile, String email) {
+    public PropertyManager(String firstName, String lastName, String phone, String mobile, String email) {
         this.firstName = firstName;
-        this.lastName = LastName;
+        this.lastName = lastName;
         this.phone = phone;
         this.mobile = mobile;
         this.email = email;
@@ -118,6 +118,10 @@ public class PropertyManager {
      */
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
    
 }

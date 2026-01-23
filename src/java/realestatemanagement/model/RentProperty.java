@@ -17,8 +17,10 @@ public class RentProperty extends  Property {
 
 
     
+    @Column(name = "WEEKLY_RENT")
     private Long weeklyRent;
     
+    @Column(name = "IS_FURNISHED")
     private Boolean isFurnished;
 
     /**

@@ -23,7 +23,6 @@ import jakarta.persistence.*;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@MappedSuperclass
 public class Property {
 
     

@@ -67,8 +67,8 @@ public class CreateRentPropertyBean {
         return property.getWeeklyRent();
     }
 
-    public void setWeeklyRent(Long salePrice) {
-        property.setWeeklyRent(salePrice);
+    public void setWeeklyRent(Long weeklyRent) {
+        property.setWeeklyRent(weeklyRent);
     }
 
     public String getStreetName() {
@@ -115,8 +115,8 @@ public class CreateRentPropertyBean {
         return property.getIsFurnished();
     }
 
-    public void setIsFurnished(Boolean isfrunished) {
-        property.setIsFurnished(isfrunished);
+    public void setIsFurnished(Boolean isFurnished) {
+        property.setIsFurnished(isFurnished);
     }
 
     public String createProperty() {
